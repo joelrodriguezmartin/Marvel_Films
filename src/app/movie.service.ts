@@ -33,8 +33,10 @@ export class MovieService {
   /**
    * TODO: NADA
    */
-  updateMovie() {
-
+  updateMovie(movie: any, selectedMovie: any) {
+    let idInArray = this.movies[this.movies.indexOf(selectedMovie)].id;
+    movie.id = idInArray;
+    this.movies[this.movies.indexOf(selectedMovie)] = movie;
   }
   /**
    * Función que borra del array la película recibida por parámetros

@@ -22,18 +22,23 @@ export class MovieDetailComponent implements OnInit {
    */
   deselectMovie(){
     this.deselectEvent.emit("");
+    let form = document.getElementById("inputForm") as HTMLFormElement;
+    form.reset();
   }
   /**
    * Función que llama al servicio de pelicula y le pasa los datos actuales para crear una nueva pelicula con ellos
    */
-  createMovie() {
-    this.movieService.createMovie(this.movie);
+  createMovie(name: string, imageUrl: string, synopsis: string, year: string) {
+    let movie: Movie = {id: 0, name: name, imageUrl: imageUrl, synopsis: synopsis, year: parseInt(year)};
+    this.movieService.createMovie(movie);
     this.deselectMovie();
   }
   /**
    * Función "update" al estar los datos bindeados bidireccionalmente la actualización es instantánea y esta funcion solo deselecciona
    */
-  updateMovie() {
+  updateMovie(name: string, imageUrl: string, synopsis: string, year: string) {
+    let movie: Movie = {id: 0, name: name, imageUrl: imageUrl, synopsis: synopsis, year: parseInt(year)};
+    this.movieService.updateMovie(movie, this.movie);
     this.deselectMovie();
   }
   /**

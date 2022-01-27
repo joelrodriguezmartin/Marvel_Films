@@ -1,10 +1,18 @@
-<app-movie-detail [movie]="selectedMovie" (deselectEvent)="deselectMovie()"></app-movie-detail><!--Colocamos listener para evento de deseleccion-->
+<!--Colocamos listener para evento de deseleccion-->
 <h2 class="text-center">Movie List</h2>
 <div class="row">
-    <div class="col-4 my-3" *ngFor="let movie of movies" 
-    (click)="onSelect(movie)" [class.selected]="movie === selectedMovie"><!--Asignamos el onSelect al click en cada pelicula-->
-         <img src="{{movie.imageUrl}}" alt="{{movie.name}}" class="img-fluid">  
-         <h3 class="text-center">{{movie.name | titleSubtitle}}</h3><!--Llamada a pipe de titulo-subtitulo-->
-         <h4 class="text-center">{{movie.year | phase}}</h4><!--Llamada a pipe de fase-->
+    <div class="col-8">
+        <div class="row">
+            <div class="col-4 my-3" *ngFor="let movie of movies" (click)="onSelect(movie)"
+                [class.selected]="movie === selectedMovie">
+                <!--Asignamos el onSelect al click en cada pelicula-->
+                <img src="{{movie.imageUrl}}" alt="{{movie.name}}" class="img-fluid">
+                <h3 class="text-center">{{movie.name | titleSubtitle}}</h3>
+                <!--Llamada a pipe de titulo-subtitulo-->
+                <h4 class="text-center">{{movie.year | phase}}</h4>
+                <!--Llamada a pipe de fase-->
+            </div>
+        </div>
     </div>
+    <div class="col-4"><app-movie-detail [movie]="selectedMovie" (deselectEvent)="deselectMovie()"></app-movie-detail></div>
 </div>
