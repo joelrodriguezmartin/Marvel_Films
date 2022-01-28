@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
-import { Movie } from '../movie';
-import { MovieService } from '../movie.service';
+import { Movie } from '../../model/movie';
+import { MovieService } from 'src/app/services/movie.service';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
