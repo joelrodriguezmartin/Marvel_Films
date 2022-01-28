@@ -10,6 +10,7 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { MovieService } from './services/movie.service';
 import { TitleSubtitlePipe } from './pipes/title-subtitle.pipe';
 import { PhasePipe } from './pipes/phase.pipe';
+import { CrudComponent } from './components/crud/crud.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { PhasePipe } from './pipes/phase.pipe';
     NavHeaderComponent,
     MovieDetailComponent,
     TitleSubtitlePipe,
-    PhasePipe
+    PhasePipe,
+    CrudComponent
   ],
   imports: [
     BrowserModule,

@@ -34,7 +34,7 @@ export class MovieService {
     }
   }
   /**
-   * TODO: NADA
+   * Funcion que actualiza la pelicula
    */
   updateMovie(movie: any, selectedMovie: any) {
     let idInArray = this.movies[this.movies.indexOf(selectedMovie)].id;

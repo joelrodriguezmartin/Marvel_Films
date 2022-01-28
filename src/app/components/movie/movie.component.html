@@ -14,5 +14,8 @@
             </div>
         </div>
     </div>
-    <div class="col-4"><app-movie-detail [movie]="getSelectedMovie()"></app-movie-detail></div>
+    <div class="col-4">
+        <app-movie-detail [movie]="getSelectedMovie()"></app-movie-detail>
+        <app-crud [movie]="getSelectedMovie()"></app-crud>
+    </div>
 </div>

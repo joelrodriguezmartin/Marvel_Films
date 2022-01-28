@@ -1,0 +1,29 @@
+<div class="col-12" *ngIf="movie" class="text-center">
+    <div class="row justify-content-center">
+        <div class="form-group col-6 text-center">
+            <!--En este bloque bindeamos los inputs con los datos de la pelicula seleccionada-->
+            <form action="" id="inputForm">
+                <label class="form-text" for="name">Name: </label>
+                <input class="form-control mb-2" type="text" value="{{movie.name}}" name="name" #name>
+                <label class="form-text" for="imageurl">Image URL: </label>
+                <input class="form-control mb-2" type="text" value="{{movie.imageUrl}}" name="imageUrl" #imageUrl>
+                <label class="form-text" for="synopsis">Synopsis: </label>
+                <input class="form-control mb-2" type="text" value="{{movie.synopsis}}" name="synopsis" #synopsis>
+                <label class="form-text" for="year">Year: </label>
+                <input class="form-control mb-2" type="number" value="{{movie.year}}" name="year" #year>
+            </form>
+        </div>
+    </div>
+    <button *ngIf="movie.id==0" class="btn btn-dark text-center"
+        (click)="createMovie(name.value, imageUrl.value, synopsis.value, year.value)">
+        Add Movie
+    </button>
+    <button *ngIf="movie.id!=0" class="btn btn-dark"
+        (click)="updateMovie(name.value, imageUrl.value, synopsis.value, year.value)">
+        <!--Este bloque de botones dependeran de si hay pelicula seleccionada-->
+        Update
+    </button>
+    <button *ngIf="movie.id!=0" class="btn btn-danger" (click)="deleteMovie()">
+        Delete
+    </button>
+</div>
