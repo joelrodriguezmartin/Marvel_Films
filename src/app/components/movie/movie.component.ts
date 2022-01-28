@@ -10,8 +10,7 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class MovieComponent implements OnInit {
   movies: Movie[] = [];
-  selectedMovie?:Movie = {id: 0, name: "", imageUrl: "", synopsis:"", year: 0};
-
+  
   constructor(private movieService: MovieService) { }
 
   getMovies():void{
@@ -24,9 +23,12 @@ export class MovieComponent implements OnInit {
     this.getMovies();
   }
   onSelect(movie: Movie):void{
-    this.selectedMovie = movie;
+    this.movieService.setSelectedMovie(movie);
   }
   deselectMovie(){
-    this.selectedMovie = {id: 0, name: "", imageUrl: "", synopsis:"", year: 0};
+    this.movieService.setSelectedMovie({id: 0, name: "", imageUrl: "", synopsis:"", year: 0});
+  }
+  getSelectedMovie(){
+    return this.movieService.getSelectedMovie();
   }
 }

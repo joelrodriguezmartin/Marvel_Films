@@ -9,6 +9,9 @@ export class MovieService {
 
   constructor() { }
   movies: Movie[] = []
+
+  selectedMovie?:Movie = {id: 0, name: "", imageUrl: "", synopsis:"", year: 0};
+
   /**
    * 
    * @returns Funcion que recibe los datos, actualmente de un mock
@@ -52,5 +55,11 @@ export class MovieService {
    */
   getLastMovie(): Movie {
     return this.movies[this.movies.length - 1];
+  }
+  setSelectedMovie(movie: Movie){
+    this.selectedMovie = movie;
+  }
+  getSelectedMovie(){
+    return this.selectedMovie;
   }
 }

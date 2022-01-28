@@ -11,7 +11,6 @@ export class MovieDetailComponent implements OnInit {
   //Variable utilizada para mostrar mas texto en las sinopsis TODO: Bindearla al padre para que al cambiar la seleccinada se resetee a false
   readMore = false;
 
-  @Output() deselectEvent = new EventEmitter<string>();
   constructor(private movieService: MovieService) { }
 
 
@@ -21,7 +20,7 @@ export class MovieDetailComponent implements OnInit {
    * Función del hijo que lanza un evento que será capturado en el padre para deseleccionar peliculas en momentos determinados
    */
   deselectMovie(){
-    this.deselectEvent.emit("");
+    this.movieService.setSelectedMovie({id: 0, name: "", imageUrl: "", synopsis:"", year: 0});
     let form = document.getElementById("inputForm") as HTMLFormElement;
     form.reset();
   }
