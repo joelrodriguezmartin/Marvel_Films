@@ -1,6 +1,6 @@
 <!--Colocamos listener para evento de deseleccion-->
 <h2 class="text-center">Movie List</h2>
-<button class="text-right btn btn-danger" routerLink="/edit/{{0}}">Añadir pelicula</button>
+<button class="text-right btn btn-danger" routerLink="/edit/{{0}}">Add movie</button>
 <div class="row">
     <div class="col-12">
         <div class="row">
@@ -20,7 +20,7 @@
             
             <div class="card text-center col-3 my-3 mx-3" style="width:18rem" *ngFor="let movie of movies">
                 <a routerLink="/detail/{{movie.id}}">
-                    <img class="card-img-top" src="{{movie.imageUrl}}" alt="{{movie.name}}">
+                    <img class="card-img-top" src="{{movie.imageUrl}}" alt="{{movie.name}}" height=368 width=282>
                     <div class="card-body">
                         <h5 class="card-title">{{movie.name | titleSubtitle}}</h5>
                         <p class="card-text">{{movie.year | phase}}</p>

@@ -23,6 +23,9 @@ export class MovieDetailComponent implements OnInit {
     this.movie = this.movieService.getMovie(id);
   }
   ngOnInit(): void {
+    //this.getMovie();
+  }
+  ngDoCheck(): void{
     this.getMovie();
   }
 

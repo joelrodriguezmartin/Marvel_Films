@@ -2,6 +2,7 @@
     <div class="row justify-content-center mt-4">
         <div class="form-group col-6 text-center">
             <!--En este bloque bindeamos los inputs con los datos de la pelicula seleccionada-->
+            <img *ngIf="movie.id!=0" src="{{movie.imageUrl}}" alt="" height=566 width=382>
             <form action="" id="inputForm">
                 <label class="form-text" for="name">Name: </label>
                 <input class="form-control mb-2" type="text" value="{{movie.name}}" name="name" #name>

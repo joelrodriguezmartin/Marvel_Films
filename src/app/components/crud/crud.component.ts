@@ -22,9 +22,11 @@ export class CrudComponent implements OnInit {
     this.movie = this.movieService.getMovie(id);
   }
   ngOnInit(): void {
+    //this.getMovie();
+  }
+  ngDoCheck(): void{
     this.getMovie();
   }
-
   /**
    * Función del hijo que lanza un evento que será capturado en el padre para deseleccionar peliculas en momentos determinados
    */

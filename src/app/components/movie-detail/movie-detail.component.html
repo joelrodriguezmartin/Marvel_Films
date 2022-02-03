@@ -1,5 +1,5 @@
 <div class="col-12" *ngIf="movie && movie.id!=0" class="text-center">
-    <h2 class="mt-4">{{movie.name | titleSubtitle}} Details</h2>
+    <h2 class="mt-4">{{movie.name | titleSubtitle}}</h2>
     <!--Llamada a pipe titulo-subtitulo-->
     <div class="row justify-content-center">
         <div class="col-4">
@@ -16,8 +16,8 @@
             </div>
         </div>
         <div class="col-4">
-            <button class="btn btn-danger my-3" routerLink="/edit/{{movie.id}}">Editar Pelicula</button>
-            <button class="btn btn-danger" routerLink="/movies">Cerrar Detalle</button>
+            <button class="btn btn-danger m-3" routerLink="/edit/{{movie.id}}">Edit Movie</button>
+            <button class="btn btn-danger" routerLink="/movies">Go back</button>
         </div>
     </div>
 </div>
