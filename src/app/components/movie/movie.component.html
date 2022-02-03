@@ -1,21 +1,33 @@
 <!--Colocamos listener para evento de deseleccion-->
 <h2 class="text-center">Movie List</h2>
+<button class="text-right btn btn-danger" routerLink="/edit/{{0}}">Añadir pelicula</button>
 <div class="row">
-    <div class="col-8">
+    <div class="col-12">
         <div class="row">
-            <div class="col-4 my-3" *ngFor="let movie of movies" (click)="onSelect(movie)"
-                [class.selected]="movie === getSelectedMovie()">
-                <!--Asignamos el onSelect al click en cada pelicula-->
-                <img src="{{movie.imageUrl}}" alt="{{movie.name}}" class="img-fluid">
-                <h3 class="text-center">{{movie.name | titleSubtitle}}</h3>
-                <!--Llamada a pipe de titulo-subtitulo-->
-                <h4 class="text-center">{{movie.year | phase}}</h4>
-                <!--Llamada a pipe de fase-->
+            <!--
+            Antiguo estilo sustituido con cards de bootstrap    
+            <div class="col-4 my-3" *ngFor="let movie of movies">
+                <a routerLink="/detail/{{movie.id}}">
+
+                    <img src="{{movie.imageUrl}}" alt="{{movie.name}}" class="img-fluid">
+                    <h3 class="text-center">{{movie.name | titleSubtitle}}</h3>
+
+                    <h4 class="text-center">{{movie.year | phase}}</h4>
+
+                </a>
+            </div>
+            -->
+            
+            <div class="card text-center col-3 my-3 mx-3" style="width:18rem" *ngFor="let movie of movies">
+                <a routerLink="/detail/{{movie.id}}">
+                    <img class="card-img-top" src="{{movie.imageUrl}}" alt="{{movie.name}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{movie.name | titleSubtitle}}</h5>
+                        <p class="card-text">{{movie.year | phase}}</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-    <div class="col-4">
-        <app-movie-detail [movie]="getSelectedMovie()"></app-movie-detail>
-        <app-crud [movie]="getSelectedMovie()"></app-crud>
-    </div>
+
 </div>

@@ -1,19 +1,23 @@
 <div class="col-12" *ngIf="movie && movie.id!=0" class="text-center">
-    <h2 >{{movie.name | titleSubtitle}} Details</h2>
+    <h2 class="mt-4">{{movie.name | titleSubtitle}} Details</h2>
     <!--Llamada a pipe titulo-subtitulo-->
     <div class="row justify-content-center">
         <div class="col-4">
             <img src="{{movie.imageUrl}}" alt="" class="img-fluid">
         </div>
         <div class="col-12">
-            <h3 >{{movie.year | phase}}</h3>
+            <h3>{{movie.year | phase}}</h3>
             <h4 class="my-3" *ngIf="movie.id!=0">Synopsis:</h4>
-            <div >{{(readMore) ? movie.synopsis : movie.synopsis | slice:0:300}}
+            <div>{{(readMore) ? movie.synopsis : movie.synopsis | slice:0:300}}
                 <span *ngIf="!readMore && movie.synopsis.length >= 300">...</span>
                 <!--Este bloque sirve para mostrar menos y enseñar el boton de leer mas dependiendo de los caracteres-->
-                <a href="javascript:;" *ngIf="!readMore && movie.synopsis.length >= 300" (click)="readMore=true">[Read More]</a>
+                <a href="javascript:;" *ngIf="!readMore && movie.synopsis.length >= 300" (click)="readMore=true">[Read
+                    More]</a>
             </div>
         </div>
-        <button class="btn btn-danger" (click)="deselectMovie()">Cerrar Detalle</button>
+        <div class="col-4">
+            <button class="btn btn-danger my-3" routerLink="/edit/{{movie.id}}">Editar Pelicula</button>
+            <button class="btn btn-danger" routerLink="/movies">Cerrar Detalle</button>
+        </div>
     </div>
 </div>

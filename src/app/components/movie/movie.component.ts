@@ -17,12 +17,12 @@ export class MovieComponent implements OnInit {
     //Al coger de la api habra que hacer esto 
     //this.movieService.getMovies()
     //  .subscribe(movies => this.movies = movies);
-    this.movies = this.movieService.getMovies()
+    this.movies = this.movieService.getMovies();
   }
   ngOnInit(): void {
     this.getMovies();
   }
-  onSelect(movie: Movie):void{
+  /*onSelect(movie: Movie):void{
     this.movieService.setSelectedMovie(movie);
   }
   deselectMovie(){
@@ -30,5 +30,5 @@ export class MovieComponent implements OnInit {
   }
   getSelectedMovie(){
     return this.movieService.getSelectedMovie();
-  }
+  }*/
 }

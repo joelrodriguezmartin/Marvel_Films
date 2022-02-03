@@ -1,6 +1,9 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from 'src/app/model/movie';
 import { MovieService } from 'src/app/services/movie.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crud',
@@ -8,11 +11,20 @@ import { MovieService } from 'src/app/services/movie.service';
   styleUrls: ['./crud.component.css']
 })
 export class CrudComponent implements OnInit {
-  @Input() movie?: Movie;
-  constructor(private movieService: MovieService) { }
+  movie: Movie = { id: 0, name: "", imageUrl: "", synopsis: "", year: 0 };
+  constructor(private movieService: MovieService,
+    private route: ActivatedRoute,
+    private location:Location,
+    private router:Router) { }
 
-  ngOnInit(): void {
+  getMovie(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.movie = this.movieService.getMovie(id);
   }
+  ngOnInit(): void {
+    this.getMovie();
+  }
+
   /**
    * Función del hijo que lanza un evento que será capturado en el padre para deseleccionar peliculas en momentos determinados
    */
@@ -27,7 +39,8 @@ export class CrudComponent implements OnInit {
   createMovie(name: string, imageUrl: string, synopsis: string, year: string) {
     let movie: Movie = { id: 0, name: name, imageUrl: imageUrl, synopsis: synopsis, year: parseInt(year) };
     this.movieService.createMovie(movie);
-    this.deselectMovie();
+    this.router.navigate(["/movies"]);
+    //this.deselectMovie();
   }
   /**
    * Función "update" al estar los datos bindeados bidireccionalmente la actualización es instantánea y esta funcion solo deselecciona
@@ -35,7 +48,8 @@ export class CrudComponent implements OnInit {
   updateMovie(name: string, imageUrl: string, synopsis: string, year: string) {
     let movie: Movie = { id: 0, name: name, imageUrl: imageUrl, synopsis: synopsis, year: parseInt(year) };
     this.movieService.updateMovie(movie, this.movie);
-    this.deselectMovie();
+    this.router.navigate(["/movies"]);
+    //this.deselectMovie();
   }
   /**
    * Función que confirma si el usuario quiere borrar la pelicula seleccionada y llama a el servicio para borrarla
@@ -43,7 +57,8 @@ export class CrudComponent implements OnInit {
   deleteMovie() {
     if (confirm("Are you sure you want to delete this movie?")) {
       this.movieService.deleteMovie(this.movie);
-      this.deselectMovie();
+      this.router.navigate(["/movies"]);
+      //this.deselectMovie();
     }
   }
 }
