@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from '../../model/movie';
 import { MovieService } from 'src/app/services/movie.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-movie-detail',
@@ -16,7 +16,8 @@ export class MovieDetailComponent implements OnInit {
   constructor(
     private movieService: MovieService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    private router: Router) { }
 
   getMovie(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -25,11 +26,14 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit(): void {
     //this.getMovie();
   }
+  /**
+   * Recibimos la película en doCheck en lugar de init por problemas de sincronía. Si el id de la pelicula es 0, 
+   * es decir si la película que intentamos encontrar por url no existe nos devuelve a la lista de peliculas
+   */
   ngDoCheck(): void{
     this.getMovie();
-  }
-
-  deselectMovie() {
-    this.movieService.setSelectedMovie({ id: 0, name: "", imageUrl: "", synopsis: "", year: 0 });
+    if(this.movie.id==0){
+      this.router.navigate(["/movies"]);
+    }
   }
 }

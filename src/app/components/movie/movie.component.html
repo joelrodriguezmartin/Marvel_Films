@@ -1,23 +1,21 @@
-<!--Colocamos listener para evento de deseleccion-->
 <h2 class="text-center">Movie List</h2>
-<button class="text-right btn btn-danger" routerLink="/edit/{{0}}">Add movie</button>
+<button class="text-right btn btn-danger " routerLink="/edit/{{0}}">Add movie</button>
 <div class="row">
     <div class="col-12">
         <div class="row">
-            <!--
-            Antiguo estilo sustituido con cards de bootstrap    
             <div class="col-4 my-3" *ngFor="let movie of movies">
                 <a routerLink="/detail/{{movie.id}}">
+                    <div class="container">
+                        <img src="{{movie.imageUrl}}" alt="{{movie.name}}" 
+                        onerror="this.onerror=null;this.src='https\:/\/i.pinimg.com/originals/24/92/00/249200c431fe811110761709b303fcaf.jpg';" 
+                        class="img-fluid">
+                        <h3 class="text-center">{{movie.name | titleSubtitle}}</h3>
 
-                    <img src="{{movie.imageUrl}}" alt="{{movie.name}}" class="img-fluid">
-                    <h3 class="text-center">{{movie.name | titleSubtitle}}</h3>
-
-                    <h4 class="text-center">{{movie.year | phase}}</h4>
-
+                        <h4 class="text-center">{{movie.year | phase}}</h4>
+                    </div>
                 </a>
             </div>
-            -->
-            
+            <!-- Vista alternativa con Cards de bootstrap
             <div class="card text-center col-3 my-3 mx-3" style="width:18rem" *ngFor="let movie of movies">
                 <a routerLink="/detail/{{movie.id}}">
                     <img class="card-img-top" src="{{movie.imageUrl}}" alt="{{movie.name}}" height=368 width=282>
@@ -27,6 +25,7 @@
                     </div>
                 </a>
             </div>
+            -->
         </div>
     </div>
 

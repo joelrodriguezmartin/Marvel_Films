@@ -1,3 +1,7 @@
+/**
+ * Interfaz con el formato de los datos que envía la API.
+ * Recogeremos los datos y le extraeremos los deseados.
+ */
 export interface FetchData {
     data: [{
         box_office: string,

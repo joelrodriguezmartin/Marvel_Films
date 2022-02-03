@@ -1,3 +1,6 @@
+/**
+ * Interfaz de película con los datos necesarios
+ */
 export interface Movie {
     id: number;
     name: string;

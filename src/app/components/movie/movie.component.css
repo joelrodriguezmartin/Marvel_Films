@@ -1,8 +1,9 @@
 img{
-    width: 382;
-    height: 566;
+    width: 382px;
+    height: 566px;
     object-fit: cover;
 }
 a{
     color: black;
+    text-decoration: none;
 }

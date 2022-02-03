@@ -12,44 +12,32 @@ import { catchError, retry } from 'rxjs/operators';
 export class MovieService {
 
   constructor(private http: HttpClient) { }
+  /*Url de la api para recoger los datos*/
   apiUrl = "https://mcuapi.herokuapp.com/api/v1/movies"
+  /*Array de películas que usaremos como almacén de datos*/
   movies: Movie[] = [];
-  rawData: FetchData = {
-    data: [{
-      box_office: "",
-      chronology: 0,
-      cover_url: "",
-      directed_by: "",
-      duration: 0,
-      id: 0,
-      imdb_id: "",
-      overview: "",
-      phase: 0,
-      post_credit_scenes: 0,
-      release_date: "",
-      saga: "",
-      title: "",
-      trailer_url: ""
-    }]
-  };
-
+  /*Objeto en el que recogeremos los datos de la API en el formato en el que vienen*/
+  rawData?: FetchData;
+  /*Objeto movie que solo se utiliza para devolverlo en caso de no existir un id*/
   selectedMovie: Movie = { id: 0, name: "", imageUrl: "", synopsis: "", year: 0 };
   /**
-   * 
-   * @returns Funcion que recibe los datos, actualmente de un mock
+   * Función que devuelve el array de películas
    */
-  getMovies(): Movie[]/*:Observable<Movie[]>*/ {
-    //Al recibir de la api habra que hacerlo observable y hacer fetch aqui
+  getMovies(): Movie[] {
     return this.movies;
   }
-  
+  /**
+   * Función que recoge los datos de la API y los transforma al formato adecuado.
+   * Una vez obtenidos los guarda en el array de almacenamiento
+   * @returns 
+   */
   fetchMovies() {
     return this.http.get<FetchData>(this.apiUrl).subscribe(data => {
       data.data.forEach(element => {
         let newMovie: Movie = {
           id: element.id,
           name: element.title,
-          imageUrl: element.cover_url == null ? "https://i.pinimg.com/originals/24/92/00/249200c431fe811110761709b303fcaf.jpg" : element.cover_url,
+          imageUrl: element.cover_url == null ? "" : element.cover_url,
           synopsis: element.overview == null ? "No synopsis yet" : element.overview,
           year: element.release_date == null ? 0 : parseInt(element.release_date.slice(0, 4))
         }
@@ -71,7 +59,7 @@ export class MovieService {
     }
   }
   /**
-   * Funcion que actualiza la pelicula
+   * Funcion que actualiza la pelicula recibida
    */
   updateMovie(movie: any, selectedMovie: any) {
     let idInArray = this.movies[this.movies.indexOf(selectedMovie)].id;
@@ -88,21 +76,22 @@ export class MovieService {
   }
   /**
    * Función que devuelve la última pelicula del array, utilizada principalmente para generar nuevos ids
+   * Usamos el último sin preocuparnos porque los datos son ordenados en el fetch
    * @returns 
    */
   getLastMovie(): Movie {
     return this.movies[this.movies.length - 1];
   }
+  /**
+   * Funcion que devuelve la película con el id recibido por parámetros. En caso de no encontrarla devuelve una vacía.
+   * Esto permite que si desde url se introduce una no existente se muestre el formulario de creación
+   * @param id 
+   * @returns 
+   */
   getMovie(id: number): Movie {
     const movie = this.movies.find(h => h.id === id);
     if (movie != undefined) {
       return movie;
     }else return this.selectedMovie;
-  }
-  setSelectedMovie(movie: Movie) {
-    this.selectedMovie = movie;
-  }
-  getSelectedMovie() {
-    return this.selectedMovie;
   }
 }
