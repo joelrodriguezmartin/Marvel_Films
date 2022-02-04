@@ -6,6 +6,16 @@ import { MOVIES } from '../model/movie-mock';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+/**
+  * @ngdoc service
+  * @name MODULE_NAME.SERVICE_NAME
+  * 
+  * @description
+  * Servicio que controla la entrada y salida de información de la app, comunicandose con la api y guardando los datos temporales
+  *
+  * @example
+  * example...
+**/
 @Injectable({
   providedIn: 'root'
 })

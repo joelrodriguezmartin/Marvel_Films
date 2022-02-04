@@ -3,6 +3,16 @@ import { Movie } from '../../model/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+
+/**
+  * @ngdoc component
+  * @name MODULE_NAME.component:movieDetail
+  * 
+  *
+  * @description
+  * Componente detalle, muestra la informacion de una pelicula concreta recibida por id
+  * 
+*/
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
@@ -32,8 +42,5 @@ export class MovieDetailComponent implements OnInit {
    */
   ngDoCheck(): void{
     this.getMovie();
-    if(this.movie.id==0){
-      this.router.navigate(["/movies"]);
-    }
   }
 }

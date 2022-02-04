@@ -13,6 +13,24 @@ import { TitleSubtitlePipe } from './pipes/title-subtitle.pipe';
 import { PhasePipe } from './pipes/phase.pipe';
 import { CrudComponent } from './components/crud/crud.component';
 import { HomeComponent } from './components/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCardModule} from '@angular/material/card'; 
+/**
+  * @ngdoc overview
+  * @name MODULE_NAME.module:MODULE_NAME
+  *
+  * @description
+  * Modulo de la app
+  * 
+  * @example
+  *  <b>script.js</b>
+  *  <pre>
+  *  import MODULE_NAME from './location...'
+  *  angular.module('myModule', [MODULE_NAME]);
+  *  </pre>
+  * 
+*/
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +46,10 @@ import { HomeComponent } from './components/home/home.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatCardModule
   ],
   providers: [MovieService],
   bootstrap: [AppComponent]

@@ -3,6 +3,15 @@ import { Movie } from '../../model/movie';
 
 import { MovieService } from 'src/app/services/movie.service';
 
+/**
+  * @ngdoc component
+  * @name MODULE_NAME.component:movie
+  * 
+  *
+  * @description
+  * Componente que muestra la lista de películas de la aplicacion
+  * 
+*/
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',

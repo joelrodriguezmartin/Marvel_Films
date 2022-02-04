@@ -5,6 +5,15 @@ import { Movie } from 'src/app/model/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { Router } from '@angular/router';
 
+/**
+  * @ngdoc component
+  * @name MODULE_NAME.component:crud
+  * 
+  *
+  * @description
+  * Componente crud, utilizado para crear y modificar peliculas de la lista del servicio
+  * 
+*/
 @Component({
   selector: 'app-crud',
   templateUrl: './crud.component.html',

@@ -1,4 +1,10 @@
 <app-nav-header></app-nav-header>
-<div class="container">
-    <router-outlet></router-outlet>
+<div class="container" [@myAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
 </div>
+<mat-sidenav-container class="bg-dark text-light mt-4">
+    <h4 class="text-center mt-3">
+        Marvel Films S.A.
+    </h4>
+    <div class="text-center mb-3">Joel Rodriguez Martin - DAW 2 2022</div>
+</mat-sidenav-container>

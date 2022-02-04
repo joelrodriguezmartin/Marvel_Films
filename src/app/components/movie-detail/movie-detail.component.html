@@ -2,24 +2,30 @@
     <!--Llamada a pipe titulo-subtitulo-->
     <div class="row">
         <div class="col-4">
-            <img src="{{movie.imageUrl}}" alt="" onerror="this.onerror=null;this.src='https\:/\/i.pinimg.com/originals/24/92/00/249200c431fe811110761709b303fcaf.jpg';" class="img-fluid" >
+            <img src="{{movie.imageUrl}}" alt=""
+                onerror="this.onerror=null;this.src='https\:/\/i.pinimg.com/originals/24/92/00/249200c431fe811110761709b303fcaf.jpg';"
+                class="img-fluid">
+        </div>
+        <div class="col-8 d-flex align-items-center">
+            <div class="row">
+                <h2 class="mt-2">{{movie.name | titleSubtitle}}</h2>
+                <h4 class="mt-2">Year released: </h4>
+                <div>{{movie.year | phase}}</div>
+                <h4 class="my-3 mt-2" *ngIf="movie.id!=0">Synopsis:</h4>
+                <div>{{(readMore) ? movie.synopsis : movie.synopsis | slice:0:300}}
+                    <span *ngIf="!readMore && movie.synopsis.length >= 300">...</span>
+                    <!--Este bloque sirve para mostrar menos y enseñar el boton de leer mas dependiendo de los caracteres-->
+                    <a href="javascript:;" *ngIf="!readMore && movie.synopsis.length >= 300"
+                        (click)="readMore=true">[Read
+                        More]</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
             <div class="d-flex justify-content-between my-3">
                 <button class="btn btn-danger " routerLink="/edit/{{movie.id}}">Edit Movie</button>
                 <button class="btn btn-danger " routerLink="/movies">Go back</button>
             </div>
-        </div>
-        <div class="col-8">
-            <h2 class="mt-2">{{movie.name | titleSubtitle}}</h2>
-            <h4 class="mt-2">Year released: </h4>
-            <div>{{movie.year | phase}}</div>
-            <h4 class="my-3 mt-2" *ngIf="movie.id!=0">Synopsis:</h4>
-            <div>{{(readMore) ? movie.synopsis : movie.synopsis | slice:0:300}}
-                <span *ngIf="!readMore && movie.synopsis.length >= 300">...</span>
-                <!--Este bloque sirve para mostrar menos y enseñar el boton de leer mas dependiendo de los caracteres-->
-                <a href="javascript:;" *ngIf="!readMore && movie.synopsis.length >= 300" (click)="readMore=true">[Read
-                    More]</a>
-            </div>
-
         </div>
     </div>
 </div>
